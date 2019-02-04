@@ -3,17 +3,24 @@ pipeline {
            stages {
                    stage('build') {
                                    steps {
-                                          sh "./gradlew clean build"
-                                          }
-         
+                                     withSonarQubeEnv('sonar'){
+                                          sh "./gradlew clean build --info sonarqube"
+                                     }
+                                   }
                    }
          
            }
 
            post {
-               always {
-                   emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-               }
+                       always {
+
+                           emailext (
+                              subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+                              body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                              //recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+                              to: 'bhanu_agrawal@persistent.co.in'
+                           )
+                       }
            }
 
 }
