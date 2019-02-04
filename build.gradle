@@ -13,4 +13,19 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    classpath "org.sonarsource.scanner.gradle: sonarqube-gradle-plugin:2.5"
+}
+
+apply plugin: 'org.sonarqube'
+sonarqube {
+    properties {
+        property "sonar.host.url", "http://10.53.16.166:9000/sonar" //  url is your sonar server
+        property "sonar.projectName", "Sonar Demo with Gradle"   //  this name will appear in dashboard
+        property "sonar.projectKey", "Sonar Demo with Gradle" // It sould be a keybased on this report is created
+        property "sonar.projectVersion", "1.0"
+        property "sonar.sources", "/var/lib/jenkins/workspace/gradleDemoWithJenkins"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.skipPackage", "true"
+        property "sonar.java.binaries", "/var/lib/jenkins/workspace/gradleDemoWithJenkins"
+    }
 }
