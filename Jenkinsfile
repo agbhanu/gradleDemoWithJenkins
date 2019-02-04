@@ -4,7 +4,7 @@ pipeline {
                    stage('build') {
                                    steps {
                                      withSonarQubeEnv('sonar'){
-                                          sh "./gradlew clean build --info sonarqube"
+                                          sh "./gradlew clean build sonar:sonar"
                                      }
                                    }
                    }
