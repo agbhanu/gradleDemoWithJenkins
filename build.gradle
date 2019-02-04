@@ -1,7 +1,10 @@
-buildscript{
-    dependencies{
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
+    dependencies { classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1" }
 }
 
 plugins {
@@ -25,6 +28,7 @@ dependencies {
 }
 
 apply plugin: org.sonarqube.gradle.SonarQubePlugin
+
 sonarqube {
     properties {
         property "sonar.host.url", "http://10.53.16.166:9000/sonar" //  url is your sonar server
