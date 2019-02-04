@@ -12,6 +12,11 @@ repositories {
     mavenCentral()
 }
 
+buildscript{
+    dependencies{
+        classpath "org.sonarsource.scanner.gradle: sonarqube-gradle-plugin:2.7"
+    }
+}
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     //classpath "org.sonarsource.scanner.gradle: sonarqube-gradle-plugin:2.5"
