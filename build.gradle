@@ -1,12 +1,12 @@
 buildscript{
     dependencies{
-        classpath "org.sonarsource.scanner.gradle: sonarqube-gradle-plugin:2.7"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
     }
 }
 
 plugins {
     id 'java'
-    id "org.sonarqube" version "2.7"
+    //id "org.sonarqube" version "2.7"
 }
 
 group 'com.psl'
