@@ -1,11 +1,13 @@
 pipeline {
     agent any
            stages {
-                   stage('build') {
-                                   steps {
-                                          sh "./gradlew clean sonarqube"
-                                   }
-                   }
+                   stage('SonarQube analysis') {
+                       withSonarQubeEnv('sonar 5.6') {
+                         // requires SonarQube Scanner for Gradle 2.1+
+                         // It's important to add --info because of SONARJNKNS-281
+                         sh './gradlew --info sonarqube'
+                       }
+                     }
          
            }
 
