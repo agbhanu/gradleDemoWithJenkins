@@ -2,5 +2,5 @@ projectKey=Sonar_Demo_with_Gradle
 serverUrl=http://10.53.16.166:9000/sonar
 serverVersion=6.5.0.27846
 dashboardUrl=http://10.53.16.166:9000/sonar/dashboard/index/Sonar_Demo_with_Gradle
-ceTaskId=AWi4UiZBnD2EW8gkAMTE
-ceTaskUrl=http://10.53.16.166:9000/sonar/api/ce/task?id=AWi4UiZBnD2EW8gkAMTE
+ceTaskId=AWi8AQ2knD2EW8gkAMTG
+ceTaskUrl=http://10.53.16.166:9000/sonar/api/ce/task?id=AWi8AQ2knD2EW8gkAMTG
