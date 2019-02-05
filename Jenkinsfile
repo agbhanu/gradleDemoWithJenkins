@@ -1,6 +1,11 @@
 pipeline {
     agent any
            stages {
+                   stage('clean build'){
+                     steps{
+                       sh './gradlew clean build'
+                     }
+                   }
                    stage('SonarQube analysis') {
                       steps{
                        withSonarQubeEnv('sonar 5.6') {
