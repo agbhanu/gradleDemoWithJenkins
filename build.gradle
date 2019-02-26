@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id "org.sonarqube" version "2.5"
+    id "jacoco"
 }
 
 group 'com.psl'
@@ -12,6 +13,20 @@ repositories {
     mavenCentral()
 }
 
+jacoco {
+    toolVersion = "0.7.9"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+test.finalizedBy(jacocoTestReport)
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
@@ -19,14 +34,17 @@ dependencies {
 
 sonarqube {
     properties {
-        property "sonar.host.url", "http://10.53.16.166:9000/sonar" //  url is your sonar server
+        property "sonar.host.url", "http://10.80.66.3:9000/" //  url is your sonar server
         property "sonar.projectName", "Sonar_Demo_with_Gradle"   //  this name will appear in dashboard
         property "sonar.projectKey", "Sonar_Demo_with_Gradle" // It sould be a keybased on this report is created
         property "sonar.projectVersion", "1.0"
-        property "sonar.sources", "./src/main"
+        property "sonar.sources", "src/main"
         property "sonar.sourceEncoding", "UTF-8"
     /*    property "sonar.skipPackage", "true"*/
-        property "sonar.java.binaries", "./src"
-        property "sonar.tests", "./src/test"
+        property "sonar.java.binaries", "build"
+        property "sonar.tests", "src/test"
+        /*property "sonar.junit.reportPaths", "./build/test-results/test"
+        property "sonar.jacoco.reportPath", "./build/jacoco/test.exec"*/
+        /*property "sonar.jacoco.reportPaths", "${project.buildDir}/jacoco/test.exec"*/
     }
 }

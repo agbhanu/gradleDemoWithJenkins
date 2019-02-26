@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {docker { image 'gradle:jdk8-slim' } }
            stages {
                    stage('clean build'){
                      steps{
@@ -8,7 +8,7 @@ pipeline {
                    }
                    stage('SonarQube analysis') {
                       steps{
-                       withSonarQubeEnv('sonar 5.6') {
+                       withSonarQubeEnv('Sonar Qube') {
                          // requires SonarQube Scanner for Gradle 2.1+
                          // It's important to add --info because of SONARJNKNS-281
                          sh './gradlew --info sonarqube'
@@ -17,17 +17,4 @@ pipeline {
                      }
          
            }
-
-           post {
-                       always {
-
-                           emailext (
-                              subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-                              body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                              //recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-                              //to: 'bhanu_agrawal@persistent.co.in'
-                           )
-                       }
-           }
-
 }
