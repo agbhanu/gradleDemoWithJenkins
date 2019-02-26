@@ -32,7 +32,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-// sonarqube properties
+
 sonarqube {
     properties {
         property "sonar.host.url", "http://10.80.66.3:9000/" //  url is your sonar server
