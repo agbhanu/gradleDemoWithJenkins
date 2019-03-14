@@ -8,4 +8,21 @@ pipeline {
                    }
 
            }
+           post{
+             always{
+                rtUpload (
+                    serverId: "TF_artifactory_server",
+                    spec:
+                        """{
+                          "files": [
+                            {
+                              "pattern": "Sample.zip",
+                              "target": "sample-repo/froggy-files/"
+                            }
+                         ]
+                        }"""
+                    failNoOp: true
+                )
+             }
+           }
 }
