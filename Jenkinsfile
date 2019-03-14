@@ -22,7 +22,7 @@ pipeline {
                                   "target": "sample-repo/froggy-files/"
                                 }
                              ]
-                            }"""
+                            }""",
                         failNoOp: true
                     )
                  }
